@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands-On Craft Camp | Creative Skills for Kids</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap');
+        
+        :root {
+            --dark-blue: #1a3a5f;
+            --light-cream: #f5f2ed;
+            --text-color: #333333;
+            --accent: #d4c9be;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-cream);
+            overflow-x: hidden;
+        }
+        
+        .nav-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-text {
+            margin-bottom: 0.25rem;
+        }
+        
+        .logo-wave {
+            width: 100px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' fill='none'%3E%3Cpath d='M0 10C10 5 20 15 30 10C40 5 50 15 60 10C70 5 80 15 90 10C100 5 110 15 120 10' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect width='1' height='1' fill='%231a3a5f'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-tagline {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .photo-credit {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        
+        .intro-heading {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .approaches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 5rem 0;
+        }
+        
+        .approach {
+            background-color: white;
+            padding: 3rem 2rem;
+            border-radius: 2px;
+        }
+        
+        .approach h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .approach p {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        
+        .approach h3 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+        
+        .calendar {
+            list-style: none;
+        }
+        
+        .calendar li {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .calendar strong {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .cta {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            margin: 5rem 0;
+        }
+        
+        .cta h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .testimonials {
+            margin: 5rem 0;
+        }
+        
+        .testimonials h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--dark-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        blockquote {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-left: 3px solid var(--accent);
+        }
+        
+        blockquote p {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        blockquote cite {
+            font-family: var(--font-body);
+            font-style: normal;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' fill='none'%3E%3Cpath d='M0 150C30 120 60 180 90 150C120 120 150 180 180 150C210 120 240 180 270 150C300 120 330 180 360 150' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3Cpath d='M0 170C30 140 60 200 90 170C120 140 150 200 180 170C210 140 240 200 270 170C300 140 330 200 360 170' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3Cpath d='M0 190C30 160 60 220 90 190C120 160 150 220 180 190C210 160 240 220 270 190C300 160 330 220 360 190' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+                margin-right: 1.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 2.5rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            .approaches {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <span class="logo-text">Hands-On Craft Camp</span>
+            <span class="logo-wave"></span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#approaches">Approaches</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#enroll">Enroll</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <section class="hero">
+        <h1 class="hero-tagline">create with your hands</h1>
+        <a href="#enroll" class="btn">Enroll Now</a>
+        <div class="photo-credit">Photo by Craft Camp</div>
+    </section>
+    
+    <section class="container">
+        <h2 class="intro-heading">Hands-On Craft Camp curates immersive creative experiences for children</h2>
+        <p class="intro-text">In an increasingly digital world, working with one's hands fosters creativity, patience, and problem-solving in ways that screens cannot. Our camp is designed to nurture this connection between mind and body, giving kids a chance to develop skills that have been removed from most school curriculums.</p>
+        
+        <div class="approaches" id="approaches">
+            <div class="approach">
+                <h2>Deep Dive Approach</h2>
+                <p>Focusing on one craft per session, this format allows campers to develop a higher level of skill and confidence. Each break session is dedicated to a single craft, culminating in an advanced final project.</p>
+                
+                <h3>School Year Calendar</h3>
+                <ul class="calendar" id="calendar">
+                    <li><strong>Fall Break</strong> Printmaking – Design, carve, and print a series of block prints, culminating in a framed piece or a set of printed textiles.</li>
+                    <li><strong>Winter Break</strong> Sewing – Learn pattern-making, stitching, and embellishments, creating a wearable garment or functional textile item.</li>
+                    <li><strong>Spring Break</strong> Leatherwork – Cutting, stitching, and tooling leather to create a finished bag, belt, or wallet.</li>
+                    <li><strong>Summer Break</strong> Stone Setting – Setting stones into pendants, rings, or decorative objects using bezel and prong settings.</li>
+                </ul>
+            </div>
+            
+            <div class="approach">
+                <h2>Craft Sampler Approach</h2>
+                <p>This approach introduces students to multiple crafts, providing a hands-on experience with a variety of materials and techniques.</p>
+                
+                <h3>School Year Calendar</h3>
+                <ul class="calendar">
+                    <li><strong>Fall Break</strong> Introduction to Printmaking & Sewing (Mini projects in both crafts)</li>
+                    <li><strong>Winter Break</strong> Leatherwork & Stone Setting (Basic projects in each skill)</li>
+                    <li><strong>Spring Break</strong> Spoon Carving & Printmaking (Creating functional wooden objects and printing custom designs)</li>
+                    <li><strong>Summer Break</strong> Mixed Materials Challenge – Combining techniques from all disciplines to create a multi-material final project.</li>
+                </ul>
+            </div>
+            
+            <div class="approach">
+                <h2>Integrated & Experimental</h2>
+                <p>This version blends traditional craft techniques with other creative disciplines like storytelling, sculpture, and practical applications.</p>
+                
+                <h3>School Year Calendar</h3>
+                <ul class="calendar">
+                    <li><strong>Fall Break</strong> Craft & Storytelling – Create hand-bound illustrated books using printmaking and sewing.</li>
+                    <li><strong>Winter Break</strong> Wearable Art – Combine sewing, leatherwork, and stone setting to design and create personal adornments.</li>
+                    <li><strong>Spring Break</strong> Function & Form – Focus on practical, usable items like carved wooden spoons, stitched pouches, and printed fabrics for daily use.</li>
+                    <li><strong>Summer Break</strong> Freestyle Maker's Lab – A guided, open-ended workshop where kids combine multiple crafts to create their own final projects.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta" id="enroll">
+        <h2>Give Your Child the Gift of Craft</h2>
+        <p>Each session ensures kids leave with a completed project and an understanding of the materials, history, and techniques behind their work. Through this program, we hope to instill confidence, patience, and an appreciation for the hands-on arts that bring imagination to life.</p>
+        <a href="#contact" class="btn">Enroll Now</a>
+    </section>
+    
+    <section class="container testimonials">
+        <h2>What Parents Say</h2>
+        <blockquote>
+            <p>"My daughter came home from craft camp with not just beautiful projects, but a newfound confidence in her abilities. She's now teaching her younger brother how to sew!"</p>
+            <cite>— Sarah M., Parent of 11-year-old</cite>
+        </blockquote>
+        
+        <blockquote>
+            <p>"In a world of screens and digital entertainment, this camp gave my son a chance to work with his hands and create something tangible. The pride on his face when he showed us his handmade leather wallet was priceless."</p>
+            <cite>— Michael T., Parent of 9-year-old</cite>
+        </blockquote>
+        
+        <div class="wave-decoration"></div>
+    </section>
+    
+    <footer id="contact">
+        <h3>Hands-On Craft Camp</h3>
+        <p>Nurturing young makers through traditional crafts</p>
+        
+        <div class="footer-links">
+            <a href="#approaches">Approaches</a>
+            <a href="#calendar">Calendar</a>
+            <a href="#about">About</a>
+            <a href="#enroll">Enroll</a>
+        </div>
+        
+        <p>Contact us: <a href="mailto:info@craftcamp.example.com" style="color: var(--accent);">info@craftcamp.example.com</a> | (555) 123-4567</p>
+        <p>&copy; 2025 Hands-On Craft Camp. All rights reserved.</p>
+    </footer>
+</body>
+</html>
