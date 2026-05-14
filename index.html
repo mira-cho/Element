@@ -1,446 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hands-On Craft Camp | Creative Skills for Kids</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap');
-        
-        :root {
-            --dark-blue: #1a3a5f;
-            --light-cream: #f5f2ed;
-            --text-color: #333333;
-            --accent: #d4c9be;
-            --font-heading: 'Cormorant Garamond', serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: var(--font-body);
-            font-weight: 300;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-cream);
-            overflow-x: hidden;
-        }
-        
-        .nav-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .logo-text {
-            margin-bottom: 0.25rem;
-        }
-        
-        .logo-wave {
-            width: 100px;
-            height: 20px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' fill='none'%3E%3Cpath d='M0 10C10 5 20 15 30 10C40 5 50 15 60 10C70 5 80 15 90 10C100 5 110 15 120 10' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 2rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: opacity 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            opacity: 0.8;
-        }
-        
-        .hero {
-            height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect width='1' height='1' fill='%231a3a5f'/%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hero-tagline {
-            font-family: var(--font-heading);
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            border: 1px solid white;
-            color: white;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .photo-credit {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            font-size: 0.7rem;
-            opacity: 0.7;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        
-        .intro-heading {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .intro-text {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .approaches {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin: 5rem 0;
-        }
-        
-        .approach {
-            background-color: white;
-            padding: 3rem 2rem;
-            border-radius: 2px;
-        }
-        
-        .approach h2 {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-        }
-        
-        .approach p {
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-        
-        .approach h3 {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-        }
-        
-        .calendar {
-            list-style: none;
-        }
-        
-        .calendar li {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        .calendar strong {
-            font-weight: 500;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        
-        .cta {
-            background-color: var(--dark-blue);
-            color: white;
-            text-align: center;
-            padding: 5rem 2rem;
-            margin: 5rem 0;
-        }
-        
-        .cta h2 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .testimonials {
-            margin: 5rem 0;
-        }
-        
-        .testimonials h2 {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        blockquote {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background-color: white;
-            border-left: 3px solid var(--accent);
-        }
-        
-        blockquote p {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        blockquote cite {
-            font-family: var(--font-body);
-            font-style: normal;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        footer {
-            background-color: var(--dark-blue);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        footer h3 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-        
-        footer p {
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-        
-        .footer-links {
-            margin: 2rem 0;
-        }
-        
-        .footer-links a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 0.8;
-        }
-        
-        .wave-decoration {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' fill='none'%3E%3Cpath d='M0 150C30 120 60 180 90 150C120 120 150 180 180 150C210 120 240 180 270 150C300 120 330 180 360 150' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3Cpath d='M0 170C30 140 60 200 90 170C120 140 150 200 180 170C210 140 240 200 270 170C300 140 330 200 360 170' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3Cpath d='M0 190C30 160 60 220 90 190C120 160 150 220 180 190C210 160 240 220 270 190C300 160 330 220 360 190' stroke='%23d4c9be' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            nav ul {
-                margin-top: 1rem;
-            }
-            
-            nav ul li {
-                margin-left: 0;
-                margin-right: 1.5rem;
-            }
-            
-            .hero-tagline {
-                font-size: 2.5rem;
-                text-align: center;
-                padding: 0 1rem;
-            }
-            
-            .approaches {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Element Workshop</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --iron: #1c1c1c;
+  --charcoal: #2a2825;
+  --ash: #3d3a36;
+  --copper: #b87333;
+  --amber: #d4861a;
+  --cream: #f0ebe3;
+  --warm-white: #faf7f2;
+  --smoke: #8a8480;
+  --font-display: 'Playfair Display', serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--cream);
+  background-color: var(--iron);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(28,28,28,0.95) 0%, transparent 100%);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span {
+  color: var(--copper);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+nav ul a {
+  color: var(--smoke);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+nav ul a:hover {
+  color: var(--copper);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6rem 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--charcoal);
+}
+
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(184, 115, 51, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(212, 134, 26, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* subtle grain */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.hero-sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--smoke);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background-color: var(--copper);
+  color: var(--iron);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--amber);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--ash);
+  color: var(--smoke);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--copper);
+  color: var(--copper);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RULE LINE ── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ash), transparent);
+}
+
+/* ── INTRO ── */
+.intro {
+  padding: 7rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 2rem;
+  color: var(--warm-white);
+}
+
+.intro p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--smoke);
+  max-width: 720px;
+}
+
+/* ── PROGRAMS ── */
+.programs {
+  padding: 5rem 3rem;
+  background-color: var(--charcoal);
+}
+
+.programs-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.programs-header {
+  margin-bottom: 4rem;
+}
+
+.programs-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-top: 1rem;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background-color: var(--ash);
+}
+
+.program-card {
+  background-color: var(--charcoal);
+  padding: 3rem 2.5rem;
+  transition: background-color 0.3s;
+}
+
+.program-card:hover {
+  background-color: var(--iron);
+}
+
+.program-index {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--copper);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+}
+
+.program-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-bottom: 1rem;
+}
+
+.program-card p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--smoke);
+  margin-bottom: 1.5rem;
+}
+
+.program-detail {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  border-top: 1px solid var(--ash);
+  padding-top: 1.5rem;
+}
+
+/* ── PROJECTS ── */
+.projects {
+  padding: 7rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-intro {
+  max-width: 700px;
+  margin-bottom: 5rem;
+}
+
+.projects-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.projects-intro .throughline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--smoke);
+}
+
+.disciplines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 4rem;
+}
+
+.discipline {
+  border-top: 1px solid var(--ash);
+  padding-top: 2rem;
+}
+
+.discipline-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+}
+
+.discipline h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--warm-white);
+}
+
+.discipline-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.discipline .projects-list {
+  font-size: 0.88rem;
+  line-height: 2;
+  color: var(--smoke);
+  margin-bottom: 1.25rem;
+}
+
+.discipline .horizon {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ash);
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ── ABOUT ── */
+.about {
+  background-color: var(--charcoal);
+  padding: 7rem 3rem;
+}
+
+.about-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-inner p {
+  font-size: 1rem;
+  line-height: 1.95;
+  color: var(--smoke);
+  margin-bottom: 1.5rem;
+}
+
+.about-inner p.pullquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--cream);
+  border-left: 2px solid var(--copper);
+  padding-left: 1.5rem;
+  margin: 3rem 0;
+  line-height: 1.7;
+}
+
+/* ── CTA ── */
+.cta {
+  padding: 8rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(184,115,51,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.cta p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--smoke);
+  max-width: 520px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.cta .btn-primary {
+  position: relative;
+}
+
+/* ── FOOTER ── */
+footer {
+  background-color: var(--charcoal);
+  border-top: 1px solid var(--ash);
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+
+.footer-name span {
+  color: var(--copper);
+}
+
+.footer-name small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.3rem;
+}
+
+/* Five element glyphs */
+.five-elements {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.element-glyph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+  cursor: default;
+}
+
+.element-glyph:hover {
+  opacity: 1;
+}
+
+.element-glyph svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--copper);
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.element-glyph span {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+
+.footer-right {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+  line-height: 2;
+}
+
+.footer-right a {
+  color: var(--ash);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-right a:hover {
+  color: var(--copper);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1.25rem 1.5rem; }
+  nav ul { gap: 1.25rem; }
+  .hero { padding: 5rem 1.5rem 4rem; }
+  .intro, .projects, .about, .cta { padding: 5rem 1.5rem; }
+  .programs { padding: 5rem 1.5rem; }
+  .disciplines { grid-template-columns: 1fr; }
+  footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-right { text-align: center; }
+  .five-elements { margin: 1rem 0; }
+}
+</style>
 </head>
 <body>
-    <div class="nav-container">
-        <a href="#" class="logo">
-            <span class="logo-text">Hands-On Craft Camp</span>
-            <span class="logo-wave"></span>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#approaches">Approaches</a></li>
-                <li><a href="#calendar">Calendar</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#enroll">Enroll</a></li>
-            </ul>
-        </nav>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Element<span>.</span></a>
+  <ul>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#enroll">Enroll</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <p class="hero-label">Element Workshop — Oakland, CA</p>
+  <h1>Work with your hands.<br>Know your materials.</h1>
+  <p class="hero-sub"><em>Metal from the earth. Wood from the forest. Fire to shape them both.</em></p>
+  <div class="hero-actions">
+    <a href="#enroll" class="btn-primary">Enroll Now</a>
+    <a href="#programs" class="btn-ghost">See Programs</a>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="section-label">What We Are</p>
+  <h2>An industrial arts center for young people who want to make real things.</h2>
+  <p>For ages 10 and up. After school, over breaks, and through the summer — Element Workshop is where you learn to weld, cut, join, shape, and build. No screens. No kits. Just material, process, and the satisfaction of something finished.</p>
+</section>
+
+<div class="rule"></div>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-inner">
+    <div class="programs-header">
+      <p class="section-label">Programs</p>
+      <h2>Three ways to come in.</h2>
     </div>
-    
-    <section class="hero">
-        <h1 class="hero-tagline">create with your hands</h1>
-        <a href="#enroll" class="btn">Enroll Now</a>
-        <div class="photo-credit">Photo by Craft Camp</div>
-    </section>
-    
-    <section class="container">
-        <h2 class="intro-heading">Hands-On Craft Camp curates immersive creative experiences for children</h2>
-        <p class="intro-text">In an increasingly digital world, working with one's hands fosters creativity, patience, and problem-solving in ways that screens cannot. Our camp is designed to nurture this connection between mind and body, giving kids a chance to develop skills that have been removed from most school curriculums.</p>
-        
-        <div class="approaches" id="approaches">
-            <div class="approach">
-                <h2>Deep Dive Approach</h2>
-                <p>Focusing on one craft per session, this format allows campers to develop a higher level of skill and confidence. Each break session is dedicated to a single craft, culminating in an advanced final project.</p>
-                
-                <h3>School Year Calendar</h3>
-                <ul class="calendar" id="calendar">
-                    <li><strong>Fall Break</strong> Printmaking – Design, carve, and print a series of block prints, culminating in a framed piece or a set of printed textiles.</li>
-                    <li><strong>Winter Break</strong> Sewing – Learn pattern-making, stitching, and embellishments, creating a wearable garment or functional textile item.</li>
-                    <li><strong>Spring Break</strong> Leatherwork – Cutting, stitching, and tooling leather to create a finished bag, belt, or wallet.</li>
-                    <li><strong>Summer Break</strong> Stone Setting – Setting stones into pendants, rings, or decorative objects using bezel and prong settings.</li>
-                </ul>
-            </div>
-            
-            <div class="approach">
-                <h2>Craft Sampler Approach</h2>
-                <p>This approach introduces students to multiple crafts, providing a hands-on experience with a variety of materials and techniques.</p>
-                
-                <h3>School Year Calendar</h3>
-                <ul class="calendar">
-                    <li><strong>Fall Break</strong> Introduction to Printmaking & Sewing (Mini projects in both crafts)</li>
-                    <li><strong>Winter Break</strong> Leatherwork & Stone Setting (Basic projects in each skill)</li>
-                    <li><strong>Spring Break</strong> Spoon Carving & Printmaking (Creating functional wooden objects and printing custom designs)</li>
-                    <li><strong>Summer Break</strong> Mixed Materials Challenge – Combining techniques from all disciplines to create a multi-material final project.</li>
-                </ul>
-            </div>
-            
-            <div class="approach">
-                <h2>Integrated & Experimental</h2>
-                <p>This version blends traditional craft techniques with other creative disciplines like storytelling, sculpture, and practical applications.</p>
-                
-                <h3>School Year Calendar</h3>
-                <ul class="calendar">
-                    <li><strong>Fall Break</strong> Craft & Storytelling – Create hand-bound illustrated books using printmaking and sewing.</li>
-                    <li><strong>Winter Break</strong> Wearable Art – Combine sewing, leatherwork, and stone setting to design and create personal adornments.</li>
-                    <li><strong>Spring Break</strong> Function & Form – Focus on practical, usable items like carved wooden spoons, stitched pouches, and printed fabrics for daily use.</li>
-                    <li><strong>Summer Break</strong> Freestyle Maker's Lab – A guided, open-ended workshop where kids combine multiple crafts to create their own final projects.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta" id="enroll">
-        <h2>Give Your Child the Gift of Craft</h2>
-        <p>Each session ensures kids leave with a completed project and an understanding of the materials, history, and techniques behind their work. Through this program, we hope to instill confidence, patience, and an appreciation for the hands-on arts that bring imagination to life.</p>
-        <a href="#contact" class="btn">Enroll Now</a>
-    </section>
-    
-    <section class="container testimonials">
-        <h2>What Parents Say</h2>
-        <blockquote>
-            <p>"My daughter came home from craft camp with not just beautiful projects, but a newfound confidence in her abilities. She's now teaching her younger brother how to sew!"</p>
-            <cite>— Sarah M., Parent of 11-year-old</cite>
-        </blockquote>
-        
-        <blockquote>
-            <p>"In a world of screens and digital entertainment, this camp gave my son a chance to work with his hands and create something tangible. The pride on his face when he showed us his handmade leather wallet was priceless."</p>
-            <cite>— Michael T., Parent of 9-year-old</cite>
-        </blockquote>
-        
-        <div class="wave-decoration"></div>
-    </section>
-    
-    <footer id="contact">
-        <h3>Hands-On Craft Camp</h3>
-        <p>Nurturing young makers through traditional crafts</p>
-        
-        <div class="footer-links">
-            <a href="#approaches">Approaches</a>
-            <a href="#calendar">Calendar</a>
-            <a href="#about">About</a>
-            <a href="#enroll">Enroll</a>
-        </div>
-        
-        <p>Contact us: <a href="mailto:info@craftcamp.example.com" style="color: var(--accent);">info@craftcamp.example.com</a> | (555) 123-4567</p>
-        <p>&copy; 2025 Hands-On Craft Camp. All rights reserved.</p>
-    </footer>
+    <div class="programs-grid">
+
+      <div class="program-card">
+        <p class="program-index">01 — Ongoing</p>
+        <h3>After School</h3>
+        <p>Two or three sessions a week throughout the school year. Students work on ongoing projects, build skill progressively, and move at their own pace. Enough time to go deep.</p>
+        <p class="program-detail">
+          Ages 10+<br>
+          Weekday afternoons<br>
+          Rolling enrollment
+        </p>
+      </div>
+
+      <div class="program-card">
+        <p class="program-index">02 — Intensive</p>
+        <h3>School Breaks</h3>
+        <p>Full days over fall, winter, and spring breaks. Each session focuses on one discipline — enough time to actually learn something, not just try it. Students leave with a finished piece and the start of a real skill.</p>
+        <p class="program-detail">
+          Ages 10+<br>
+          Fall · Winter · Spring<br>
+          5–7 day sessions
+        </p>
+      </div>
+
+      <div class="program-card">
+        <p class="program-index">03 — Deep Work</p>
+        <h3>Summer</h3>
+        <p>Our longest sessions, for the most ambitious projects. Multi-week intensives where students can take on serious builds — furniture, wearables, metalwork, or whatever they've been imagining all year.</p>
+        <p class="program-detail">
+          Ages 10+<br>
+          June · July · August<br>
+          2–4 week sessions
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-intro">
+    <p class="section-label">What You'll Make</p>
+    <h2>Art first. Skill ultimately.</h2>
+    <p class="throughline">Every project starts as an idea and ends as a thing you can hold. Along the way, you learn something that doesn't leave you — how metal behaves under heat, how wood wants to split along the grain, how your hands get smarter every time you use them. That's the art. The skill is what it turns into.</p>
+  </div>
+
+  <div class="disciplines">
+
+    <div class="discipline">
+      <div class="discipline-meta">
+        <h3>Wood</h3>
+        <span class="discipline-tag">Carpentry</span>
+      </div>
+      <p class="projects-list">
+        A shelf. A stool. A clock. A toolbox.<br>
+        Joinery, finishing, measuring, making something level and true.
+      </p>
+      <p class="horizon">Someday: frame a wall. Build a van. Build a house.</p>
+    </div>
+
+    <div class="discipline">
+      <div class="discipline-meta">
+        <h3>Metal</h3>
+        <span class="discipline-tag">Welding & Fabrication</span>
+      </div>
+      <p class="projects-list">
+        A wall hook. A fire poker. A bracket. A small table.<br>
+        Welding, grinding, shaping steel to your will.
+      </p>
+      <p class="horizon">Someday: fabricate anything. For true makers — make your own tools.</p>
+    </div>
+
+    <div class="discipline">
+      <div class="discipline-meta">
+        <h3>Jewelry & Metalsmithing</h3>
+        <span class="discipline-tag">Copper · Silver · Stone</span>
+      </div>
+      <p class="projects-list">
+        A copper bracelet. A ring. A pendant. A pair of earrings.<br>
+        Sawing, soldering, forming, setting stone.
+      </p>
+      <p class="horizon">Beautiful for life — and the same skills that go into copper plumbing.</p>
+    </div>
+
+    <div class="discipline">
+      <div class="discipline-meta">
+        <h3>Mixed & Open</h3>
+        <span class="discipline-tag">Build Anything</span>
+      </div>
+      <p class="projects-list">
+        A copper and wood lamp. A tiled tray. Something no one has made before.<br>
+        Combine what you know. Solve problems you invent.
+      </p>
+      <p class="horizon">This is where self-reliance lives. Build anything. Fix anything.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="section-label">About</p>
+    <h2>This place should exist.</h2>
+    <p class="pullquote">"A lot of us needed a place like this before we knew we were makers. Somewhere to find out what our hands could do — and in doing that, find out something about who we were. Element Workshop exists because that place should exist for every young person who's ever taken something apart just to see how it worked."</p>
+    <p>I spend my days working in pixels — but for years I've also been deep in wood, metal, jewelry, clay, and textiles. These aren't hobbies in the casual sense. They're nourishing in a way that's hard to explain until you've felt it: the focus they demand, the problem-solving they require, the satisfaction of something made by hand. I wanted to build a place where young people could find that feeling early.</p>
+    <p>Element Workshop is an industrial arts center in Oakland for ages 10 and up. We teach welding, carpentry, metalsmithing, and fabrication — the skills that built the physical world, and that are largely absent from schools today. Our students leave with real things they made, real skills they own, and the quiet confidence that comes from having worked with your hands.</p>
+    <p>We believe in the trades. We believe in art. We believe those two things are the same thing.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="enroll">
+  <h2>Ready to make something?</h2>
+  <p>After-school enrollment is open. Break sessions fill fast. Come see the shop.</p>
+  <a href="mailto:info@elementworkshop.com" class="btn-primary">Get in Touch</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">
+    Element<span>.</span>Workshop
+    <small>Oakland, CA · Ages 10+</small>
+  </div>
+
+  <!-- Five TCM elements as minimal glyphs -->
+  <div class="five-elements">
+
+    <!-- Wood 木 -->
+    <div class="element-glyph" title="Wood">
+      <svg viewBox="0 0 20 20">
+        <line x1="10" y1="2" x2="10" y2="18"/>
+        <line x1="4" y1="8" x2="10" y2="4"/>
+        <line x1="16" y1="8" x2="10" y2="4"/>
+        <line x1="3" y1="14" x2="10" y2="10"/>
+        <line x1="17" y1="14" x2="10" y2="10"/>
+      </svg>
+      <span>Wood</span>
+    </div>
+
+    <!-- Fire 火 -->
+    <div class="element-glyph" title="Fire">
+      <svg viewBox="0 0 20 20">
+        <path d="M10 2 C10 2 14 7 14 11 C14 13.76 12.21 16 10 16 C7.79 16 6 13.76 6 11 C6 7 10 2 10 2Z"/>
+        <path d="M10 10 C10 10 12 12 12 14 C12 15.1 11.1 16 10 16"/>
+      </svg>
+      <span>Fire</span>
+    </div>
+
+    <!-- Earth 土 -->
+    <div class="element-glyph" title="Earth">
+      <svg viewBox="0 0 20 20">
+        <line x1="3" y1="14" x2="17" y2="14"/>
+        <line x1="5" y1="18" x2="15" y2="18"/>
+        <line x1="10" y1="4" x2="10" y2="14"/>
+        <line x1="5" y1="9" x2="15" y2="9"/>
+      </svg>
+      <span>Earth</span>
+    </div>
+
+    <!-- Metal 金 -->
+    <div class="element-glyph" title="Metal">
+      <svg viewBox="0 0 20 20">
+        <polygon points="10,3 17,8 14,17 6,17 3,8"/>
+        <line x1="10" y1="3" x2="10" y2="17"/>
+        <line x1="3" y1="8" x2="17" y2="8"/>
+      </svg>
+      <span>Metal</span>
+    </div>
+
+    <!-- Water 水 -->
+    <div class="element-glyph" title="Water">
+      <svg viewBox="0 0 20 20">
+        <path d="M10 3 C10 3 16 10 16 13 C16 16.31 13.31 19 10 19 C6.69 19 4 16.31 4 13 C4 10 10 3 10 3Z"/>
+        <path d="M7 13 C7 11.5 8.5 10 10 10"/>
+      </svg>
+      <span>Water</span>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+    <a href="mailto:info@elementworkshop.com">info@elementworkshop.com</a><br>
+    <a href="tel:5551234567">(555) 123-4567</a><br><br>
+    © 2025 Element Workshop
+  </div>
+</footer>
+
 </body>
 </html>
