@@ -16,6 +16,15 @@
   --cream: #f0ebe3;
   --warm-white: #faf7f2;
   --smoke: #8a8480;
+
+  /* light zones */
+  --paper: #e4e1db;
+  --paper-alt: #d9d5cd;
+  --ink: #2a2825;
+  --ink-soft: #4f4a44;
+  --ink-faint: #5a554f;
+  --rule: #b5b0a7;
+  --copper-ink: #7f4816; /* copper darkened for small text on light gray */
   --font-display: 'Playfair Display', serif;
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
@@ -34,8 +43,8 @@ html {
 body {
   font-family: var(--font-body);
   font-weight: 300;
-  color: var(--cream);
-  background-color: var(--iron);
+  color: var(--ink);
+  background-color: var(--paper);
   overflow-x: hidden;
 }
 
@@ -85,6 +94,15 @@ nav ul a:hover {
   color: var(--copper);
 }
 
+/* nav over light sections (toggled by script once the hero scrolls away) */
+nav.on-light {
+  background: linear-gradient(to bottom, rgba(228,225,219,0.96) 0%, transparent 100%);
+}
+nav.on-light .nav-logo { color: var(--ink); }
+nav.on-light .nav-logo span { color: var(--copper-ink); }
+nav.on-light ul a { color: var(--ink-soft); }
+nav.on-light ul a:hover { color: var(--copper-ink); }
+
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
@@ -95,6 +113,7 @@ nav ul a:hover {
   position: relative;
   overflow: hidden;
   background-color: var(--charcoal);
+  color: var(--cream);
 }
 
 .hero-texture {
@@ -180,8 +199,8 @@ nav ul a:hover {
 .btn-ghost {
   display: inline-block;
   padding: 0.9rem 2.2rem;
-  border: 1px solid var(--ash);
-  color: var(--smoke);
+  border: 1px solid var(--ink-faint);
+  color: var(--ink-soft);
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -191,9 +210,13 @@ nav ul a:hover {
 }
 
 .btn-ghost:hover {
-  border-color: var(--copper);
-  color: var(--copper);
+  border-color: var(--copper-ink);
+  color: var(--copper-ink);
 }
+
+/* ghost button stays dark-style inside the dark hero */
+.hero .btn-ghost { border-color: var(--ash); color: var(--smoke); }
+.hero .btn-ghost:hover { border-color: var(--copper); color: var(--copper); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -204,7 +227,7 @@ nav ul a:hover {
 .rule {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--ash), transparent);
+  background: linear-gradient(to right, transparent, var(--rule), transparent);
 }
 
 /* ── INTRO ── */
@@ -219,7 +242,7 @@ nav ul a:hover {
   font-size: 0.65rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-ink);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -231,7 +254,7 @@ nav ul a:hover {
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--copper);
+  background: var(--copper-ink);
 }
 
 .intro h2 {
@@ -240,20 +263,20 @@ nav ul a:hover {
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: 2rem;
-  color: var(--warm-white);
+  color: var(--ink);
 }
 
 .intro p {
   font-size: 1.05rem;
   line-height: 1.9;
-  color: var(--smoke);
+  color: var(--ink-soft);
   max-width: 720px;
 }
 
 /* ── PROGRAMS ── */
 .programs {
   padding: 5rem 3rem;
-  background-color: var(--charcoal);
+  background-color: var(--paper-alt);
 }
 
 .programs-inner {
@@ -269,7 +292,7 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-top: 1rem;
 }
 
@@ -277,24 +300,24 @@ nav ul a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
-  background-color: var(--ash);
+  background-color: var(--rule);
 }
 
 .program-card {
   flex: 1 1 280px;
-  background-color: var(--charcoal);
+  background-color: var(--paper-alt);
   padding: 3rem 2.5rem;
   transition: background-color 0.3s;
 }
 
 .program-card:hover {
-  background-color: var(--iron);
+  background-color: var(--paper);
 }
 
 .program-index {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: var(--copper);
+  color: var(--copper-ink);
   letter-spacing: 0.2em;
   margin-bottom: 1.5rem;
 }
@@ -303,24 +326,24 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
 .program-card p {
   font-size: 0.9rem;
   line-height: 1.8;
-  color: var(--smoke);
+  color: var(--ink-soft);
   margin-bottom: 1.5rem;
 }
 
 .program-detail {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--ash);
+  color: var(--ink-faint);
   letter-spacing: 0.1em;
   line-height: 1.8;
-  border-top: 1px solid var(--ash);
+  border-top: 1px solid var(--rule);
   padding-top: 1.5rem;
 }
 
@@ -340,7 +363,7 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -350,7 +373,7 @@ nav ul a:hover {
   font-style: italic;
   font-size: 1.05rem;
   line-height: 1.9;
-  color: var(--smoke);
+  color: var(--ink-soft);
 }
 
 .disciplines {
@@ -360,7 +383,7 @@ nav ul a:hover {
 }
 
 .discipline {
-  border-top: 1px solid var(--ash);
+  border-top: 1px solid var(--rule);
   padding-top: 2rem;
 }
 
@@ -375,7 +398,7 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
 }
 
 .discipline-tag {
@@ -383,20 +406,20 @@ nav ul a:hover {
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-ink);
 }
 
 .discipline .projects-list {
   font-size: 0.88rem;
   line-height: 2;
-  color: var(--smoke);
+  color: var(--ink-soft);
   margin-bottom: 1.25rem;
 }
 
 .discipline .horizon {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--ash);
+  color: var(--ink-faint);
   letter-spacing: 0.05em;
   line-height: 1.7;
   font-style: italic;
@@ -404,7 +427,7 @@ nav ul a:hover {
 
 /* ── ABOUT ── */
 .about {
-  background-color: var(--charcoal);
+  background-color: var(--paper-alt);
   padding: 7rem 3rem;
 }
 
@@ -417,7 +440,7 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-top: 1rem;
   margin-bottom: 2.5rem;
 }
@@ -425,7 +448,7 @@ nav ul a:hover {
 .about-inner p {
   font-size: 1rem;
   line-height: 1.95;
-  color: var(--smoke);
+  color: var(--ink-soft);
   margin-bottom: 1.5rem;
 }
 
@@ -433,7 +456,7 @@ nav ul a:hover {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.2rem;
-  color: var(--cream);
+  color: var(--ink);
   border-left: 2px solid var(--copper);
   padding-left: 1.5rem;
   margin: 3rem 0;
@@ -447,17 +470,17 @@ nav ul a:hover {
   gap: 1rem 1.75rem;
   margin-top: 3.5rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--ash);
+  border-top: 1px solid var(--rule);
 }
 
 .about-contact-label {
   font-family: var(--font-display);
   font-size: 1.3rem;
-  color: var(--cream);
+  color: var(--ink);
 }
 
 .about-contact .btn-primary:focus-visible {
-  outline: 1px solid var(--amber);
+  outline: 1px solid var(--copper-ink);
   outline-offset: 3px;
 }
 
@@ -488,7 +511,7 @@ footer {
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ash);
+  color: var(--smoke);
   margin-top: 0.3rem;
 }
 
@@ -537,12 +560,12 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: var(--ash);
+  color: var(--smoke);
   line-height: 2;
 }
 
 .footer-right a {
-  color: var(--ash);
+  color: var(--smoke);
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -567,7 +590,7 @@ footer {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -575,13 +598,17 @@ footer {
 .schedule-intro p {
   font-size: 1rem;
   line-height: 1.9;
-  color: var(--smoke);
+  color: var(--ink-soft);
+}
+
+.schedule-intro p + p {
+  margin-top: 1rem;
 }
 
 .sessions {
   list-style: none;
-  border-left: 1px solid var(--ash);
-  border-bottom: 1px solid var(--ash);
+  border-left: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
   margin-left: 5px;
 }
 
@@ -592,7 +619,7 @@ footer {
   gap: 1.5rem 3rem;
   align-items: start;
   padding: 2.5rem 0 2.5rem 2.75rem;
-  border-top: 1px solid var(--ash);
+  border-top: 1px solid var(--rule);
 }
 
 .session::before {
@@ -604,7 +631,7 @@ footer {
   height: 11px;
   border: 1px solid var(--copper);
   border-radius: 50%;
-  background: var(--iron);
+  background: var(--paper);
 }
 
 .session-date {
@@ -612,7 +639,7 @@ footer {
   font-size: 2.2rem;
   font-weight: 400;
   line-height: 1.1;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-bottom: 0.6rem;
 }
 
@@ -621,7 +648,7 @@ footer {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   line-height: 1.7;
-  color: var(--smoke);
+  color: var(--ink-soft);
 }
 
 .session-tag {
@@ -630,7 +657,7 @@ footer {
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-ink);
   margin-bottom: 0.75rem;
 }
 
@@ -638,14 +665,14 @@ footer {
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--ink);
   margin-bottom: 0.75rem;
 }
 
 .session-body p {
   font-size: 0.9rem;
   line-height: 1.8;
-  color: var(--smoke);
+  color: var(--ink-soft);
   max-width: 46ch;
 }
 
@@ -653,7 +680,7 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.05em;
-  color: var(--cream);
+  color: var(--ink);
   margin-top: 1rem;
 }
 
@@ -669,7 +696,7 @@ footer {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  color: var(--cream);
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 
@@ -694,7 +721,7 @@ footer {
 
 .session-action .btn-primary:focus-visible,
 .session-action .btn-ghost:focus-visible {
-  outline: 1px solid var(--amber);
+  outline: 1px solid var(--copper-ink);
   outline-offset: 3px;
 }
 
@@ -733,8 +760,8 @@ footer {
   <ul>
     <li><a href="#programs">Programs</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#enroll">Enroll</a></li>
+    <li><a href="#about">About</a></li>
   </ul>
 </nav>
 
@@ -756,7 +783,7 @@ footer {
 <section class="intro">
   <p class="section-label">What We Are</p>
   <h2>A miniature industrial arts center for young people who want to make real things.</h2>
-  <p>For ages 10 and up. After school, over breaks, and through the summer — Element Workshop is where you learn to cut, join, shape, and build. No screens. No kits. Just material, process, and the satisfaction of something finished.</p>
+  <p>For ages 12 and up. After school, over breaks, and through the summer — Element Workshop is where you learn to cut, join, shape, and build. No screens. No kits. Just material, process, and the satisfaction of something finished.</p>
 </section>
 
 <div class="rule"></div>
@@ -775,7 +802,7 @@ footer {
         <h3>After School</h3>
         <p>If there is demand, we'll run two or three sessions a week throughout the school year. Students work on ongoing projects, build skill progressively, and move at their own pace. Enough time to go deep.</p>
         <p class="program-detail">
-          Ages 10+<br>
+          Ages 12+<br>
           Weekday afternoons<br>
           Not yet scheduled
         </p>
@@ -786,7 +813,7 @@ footer {
         <h3>School Breaks</h3>
         <p>Full days over fall, winter, and spring breaks. Each session focuses on one discipline — enough time to actually learn something, not just try it. Students leave with a finished piece and the start of a real skill.</p>
         <p class="program-detail">
-          Ages 10+<br>
+          Ages 12+<br>
           Fall · Winter · Spring<br>
           1–5 day sessions
         </p>
@@ -797,7 +824,7 @@ footer {
         <h3>Summer</h3>
         <p>Our longest sessions, for the most ambitious projects. Full-week intensives where students can take on serious builds — furniture, wearables, metalwork- or in select sessions, whatever they've been imagining all year.</p>
         <p class="program-detail">
-          Ages 10+<br>
+          Ages 12+<br>
           Select weeks throughout the summer
         </p>
       </div>
@@ -869,28 +896,13 @@ footer {
 
 <div class="rule"></div>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-inner">
-    <p class="section-label">About</p>
-    <h2>This place should exist.</h2>
-    <p class="pullquote">"A lot of us needed a place like this before we knew we were makers. Somewhere to find out what our hands could do — and in doing that, find out something about who we were. Element Workshop exists because that place should exist for every young person who's ever taken something apart just to see how it worked."</p>
-    <p>I spend my days working in pixels — but for years I've also been deep in wood, metal, jewelry, clay, and textiles. These aren't hobbies in the casual sense. They're nourishing in a way that's hard to explain until you've felt it: the focus they demand, the problem-solving they require, the satisfaction of something made by hand. At the core, it's a curiosity about the way things work, and wanting to participate in that. I wanted to build a place where young people could find that feeling early.</p>
-    <p>Element Workshop is an industrial arts class, in micro scale, in Oakland for ages 10 and up. I can teach 3 kids at a time with real attention. We teach woodwork, metalsmithing, and fabrication — the skills that built the physical world, and that are largely absent from schools today. Our students leave with real things they made, real skills they own, and the quiet confidence that comes from having worked with their hands. One day, these skills might turn into hobby art, carpentry or welding, or the ability to fix your own house.</p>
-    <p>We believe in maker skills. We believe in art. We believe those two things are the same thing.</p>
-    <div class="about-contact">
-      <span class="about-contact-label">Questions?</span>
-      <a href="mailto:cho.mira@gmail.com" class="btn-primary">Get in touch</a>
-    </div>
-  </div>
-</section>
-
 <!-- ENROLL -->
 <section class="schedule" id="enroll">
   <div class="schedule-intro">
     <p class="section-label">Enroll</p>
     <h2>Ready to make something?</h2>
-    <p>Ages 10+. Maximum 3 students per session. Full days, 9 to 3, bring your own lunch. $100 per day, materials included.</p>
+    <p>Ages 12+. Maximum 3 students per session. Full days, 9 to 3, bring your own lunch. $130 per day, all materials included: class metals, stones, and wood, tools I bought just for the class, and the use of my own.</p>
+    <p>I don't make much on this, and that's not the point. Materials, tools for each student, and insurance use up the fee. I do it because it's fun for me. For you, it's about what a day of childcare costs, and your kid comes home with something they made.</p>
   </div>
   <ol class="sessions">
       <li class="session">
@@ -902,7 +914,7 @@ footer {
           <span class="session-tag">Water</span>
           <h3>Copper: forming and jewelry</h3>
           <p>Shape copper by hand and finish a few small pieces of jewelry. Soldering if time allows.</p>
-          <p class="session-price">$400 for 4 days</p>
+          <p class="session-price">$520 for 4 days</p>
         </div>
         <div class="session-action" data-seats="3">
           <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Copper%2C%20Dec%2028-31&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
@@ -918,7 +930,7 @@ footer {
           <span class="session-tag">Wood · Intro</span>
           <h3>Intro to wood</h3>
           <p>Learn the basic tools and make one small piece to take home. Start here, then join Wood week.</p>
-          <p class="session-price">$100</p>
+          <p class="session-price">$130</p>
         </div>
         <div class="session-action" data-seats="3">
           <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Intro%20to%20wood%2C%20Feb%2015&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
@@ -934,7 +946,7 @@ footer {
           <span class="session-tag">Wood</span>
           <h3>Wood week</h3>
           <p>Tool skills first, then one real build to take home.</p>
-          <p class="session-price">$500 for 5 days</p>
+          <p class="session-price">$650 for 5 days</p>
         </div>
         <div class="session-action" data-seats="3">
           <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Wood%20week%2C%20Mar%2029-Apr%202&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
@@ -950,7 +962,7 @@ footer {
           <span class="session-tag">Fire</span>
           <h3>Fire week</h3>
           <p>Metalworking with fire, plus jewelry.</p>
-          <p class="session-price">$500 for 5 days</p>
+          <p class="session-price">$650 for 5 days</p>
         </div>
         <div class="session-action" data-seats="3">
           <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Fire%20week%2C%20June&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
@@ -960,11 +972,27 @@ footer {
   </ol>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="section-label">About</p>
+    <h2>This place should exist.</h2>
+    <p class="pullquote">"A lot of us needed a place like this before we knew we were makers. Somewhere to find out what our hands could do — and in doing that, find out something about who we were. Element Workshop exists because that place should exist for every young person who's ever taken something apart just to see how it worked."</p>
+    <p>I spend my days working in pixels — but for years I've also been deep in wood, metal, jewelry, clay, and textiles. These aren't hobbies in the casual sense. They're nourishing in a way that's hard to explain until you've felt it: the focus they demand, the problem-solving they require, the satisfaction of something made by hand. At the core, it's a curiosity about the way things work, and wanting to participate in that. I wanted to build a place where young people could find that feeling early.</p>
+    <p>Element Workshop is an industrial arts class, in micro scale, in Oakland for ages 12 and up. I can teach 3 kids at a time with real attention. We teach woodwork, metalsmithing, and fabrication — the skills that built the physical world, and that are largely absent from schools today. Our students leave with real things they made, real skills they own, and the quiet confidence that comes from having worked with their hands. One day, these skills might turn into hobby art, carpentry or welding, or the ability to fix your own house.</p>
+    <p>We believe in maker skills. We believe in art. We believe those two things are the same thing.</p>
+    <div class="about-contact">
+      <span class="about-contact-label">Questions?</span>
+      <a href="mailto:cho.mira@gmail.com" class="btn-primary">Get in touch</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">
     Element<span>.</span>Workshop
-    <small>Oakland, CA · Ages 10+</small>
+    <small>Oakland, CA · Ages 12+</small>
   </div>
 
   <!-- Five TCM elements as minimal glyphs -->
@@ -1027,6 +1055,19 @@ footer {
     © 2025 Element Workshop
   </div>
 </footer>
+
+
+<script>
+  // Switch the nav to its light style once the dark hero has scrolled away
+  (function () {
+    var nav = document.querySelector('nav');
+    var hero = document.querySelector('.hero');
+    if (!nav || !hero || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      nav.classList.toggle('on-light', !entries[0].isIntersecting);
+    }, { rootMargin: '-80px 0px 0px 0px', threshold: 0 }).observe(hero);
+  })();
+</script>
 
 </body>
 </html>
