@@ -274,13 +274,14 @@ nav ul a:hover {
 }
 
 .programs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   background-color: var(--ash);
 }
 
 .program-card {
+  flex: 1 1 280px;
   background-color: var(--charcoal);
   padding: 3rem 2.5rem;
   transition: background-color 0.3s;
@@ -439,42 +440,29 @@ nav ul a:hover {
   line-height: 1.7;
 }
 
-/* ── CTA ── */
-.cta {
-  padding: 8rem 3rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.about-inner .about-contact {
+  margin-top: 3.5rem;
+  margin-bottom: 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ash);
+  color: var(--cream);
 }
 
-.cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, rgba(184,115,51,0.1) 0%, transparent 70%);
-  pointer-events: none;
+.about-contact a {
+  color: var(--copper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  transition: color 0.3s, border-color 0.3s;
 }
 
-.cta h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 400;
-  color: var(--warm-white);
-  margin-bottom: 1.5rem;
-  position: relative;
+.about-contact a:hover {
+  color: var(--amber);
+  border-color: var(--amber);
 }
 
-.cta p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--smoke);
-  max-width: 520px;
-  margin: 0 auto 3rem;
-  position: relative;
-}
-
-.cta .btn-primary {
-  position: relative;
+.about-contact a:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 3px;
 }
 
 /* ── FOOTER ── */
@@ -567,12 +555,169 @@ footer {
   color: var(--copper);
 }
 
+/* ── SCHEDULE ── */
+.schedule {
+  padding: 7rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.schedule-intro {
+  max-width: 700px;
+  margin-bottom: 4rem;
+}
+
+.schedule-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.schedule-intro p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--smoke);
+}
+
+.sessions {
+  list-style: none;
+  border-left: 1px solid var(--ash);
+  border-bottom: 1px solid var(--ash);
+  margin-left: 5px;
+}
+
+.session {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) 1fr auto;
+  gap: 1.5rem 3rem;
+  align-items: start;
+  padding: 2.5rem 0 2.5rem 2.75rem;
+  border-top: 1px solid var(--ash);
+}
+
+.session::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: calc(2.5rem + 1.1rem - 5px);
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--copper);
+  border-radius: 50%;
+  background: var(--iron);
+}
+
+.session-date {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--warm-white);
+  margin-bottom: 0.6rem;
+}
+
+.session-length {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  line-height: 1.7;
+  color: var(--smoke);
+}
+
+.session-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 0.75rem;
+}
+
+.session h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-bottom: 0.75rem;
+}
+
+.session-body p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--smoke);
+  max-width: 46ch;
+}
+
+.session-body p.session-price {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  margin-top: 1rem;
+}
+
+/* Seats: edit data-seats on .session-action (0 to 3). At 0 it reads "Full" and the waitlist button replaces Reserve. */
+.session-action {
+  text-align: right;
+  min-width: 11rem;
+}
+
+.session-action::before {
+  content: attr(data-seats) " of 3 seats open";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.session-action[data-seats="0"]::before {
+  content: "Full";
+}
+
+.session-action .btn-primary,
+.session-action .btn-ghost {
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+}
+
+.session-action .waitlist,
+.session-action[data-seats="0"] .reserve {
+  display: none;
+}
+
+.session-action[data-seats="0"] .waitlist {
+  display: inline-block;
+}
+
+.session-action .btn-primary:focus-visible,
+.session-action .btn-ghost:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .schedule { padding: 5rem 1.5rem; }
+  .session {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-left: 1.75rem;
+  }
+  .session-action { text-align: left; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1.25rem 1.5rem; }
   nav ul { gap: 1.25rem; }
   .hero { padding: 5rem 1.5rem 4rem; }
-  .intro, .projects, .about, .cta { padding: 5rem 1.5rem; }
+  .intro, .projects, .about { padding: 5rem 1.5rem; }
   .programs { padding: 5rem 1.5rem; }
   .disciplines { grid-template-columns: 1fr; }
   footer {
@@ -632,22 +777,22 @@ footer {
       <div class="program-card">
         <p class="program-index">01 — Ongoing</p>
         <h3>After School</h3>
-        <p>Two or three sessions a week throughout the school year. Students work on ongoing projects, build skill progressively, and move at their own pace. Enough time to go deep.</p>
+        <p>If there is demand, we'll run two or three sessions a week throughout the school year. Students work on ongoing projects, build skill progressively, and move at their own pace. Enough time to go deep.</p>
         <p class="program-detail">
           Ages 10+<br>
           Weekday afternoons<br>
-          Rolling enrollment
+          Not yet scheduled
         </p>
       </div>
 
       <div class="program-card">
-        <p class="program-index">02 — Intensive</p>
+        <p class="program-index">02 — Intro</p>
         <h3>School Breaks</h3>
         <p>Full days over fall, winter, and spring breaks. Each session focuses on one discipline — enough time to actually learn something, not just try it. Students leave with a finished piece and the start of a real skill.</p>
         <p class="program-detail">
           Ages 10+<br>
           Fall · Winter · Spring<br>
-          5–7 day sessions
+          1–5 day sessions
         </p>
       </div>
 
@@ -657,8 +802,7 @@ footer {
         <p>Our longest sessions, for the most ambitious projects. Multi-week intensives where students can take on serious builds — furniture, wearables, metalwork, or whatever they've been imagining all year.</p>
         <p class="program-detail">
           Ages 10+<br>
-          June · July · August<br>
-          2–4 week sessions
+          Select weeks throughout the summer
         </p>
       </div>
 
@@ -736,16 +880,85 @@ footer {
     <h2>This place should exist.</h2>
     <p class="pullquote">"A lot of us needed a place like this before we knew we were makers. Somewhere to find out what our hands could do — and in doing that, find out something about who we were. Element Workshop exists because that place should exist for every young person who's ever taken something apart just to see how it worked."</p>
     <p>I spend my days working in pixels — but for years I've also been deep in wood, metal, jewelry, clay, and textiles. These aren't hobbies in the casual sense. They're nourishing in a way that's hard to explain until you've felt it: the focus they demand, the problem-solving they require, the satisfaction of something made by hand. At the core, it's a curiosity about the way things work, and wanting to participate in that. I wanted to build a place where young people could find that feeling early.</p>
-    <p>Element Workshop is an industrial arts class, in micro scale, in Oakland for ages 10 and up. I can teach 3-4 kids at a time with real attention. We teach woodwork, metalsmithing, and fabrication — the skills that built the physical world, and that are largely absent from schools today. Our students leave with real things they made, real skills they own, and the quiet confidence that comes from having worked with their hands. One day, these skills might turn into hobby art, carpentry or welding, or the ability to fix your own house.</p>
+    <p>Element Workshop is an industrial arts class, in micro scale, in Oakland for ages 10 and up. I can teach 3 kids at a time with real attention. We teach woodwork, metalsmithing, and fabrication — the skills that built the physical world, and that are largely absent from schools today. Our students leave with real things they made, real skills they own, and the quiet confidence that comes from having worked with their hands. One day, these skills might turn into hobby art, carpentry or welding, or the ability to fix your own house.</p>
     <p>We believe in maker skills. We believe in art. We believe those two things are the same thing.</p>
+    <p class="about-contact">Questions? <a href="mailto:cho.mira@gmail.com">cho.mira@gmail.com</a></p>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="enroll">
-  <h2>Ready to make something?</h2>
-  <p>After-school enrollment is open. Break sessions fill fast. Come see the shop.</p>
-  <a href="mailto:info@elementworkshop.com" class="btn-primary">Get in Touch</a>
+<!-- ENROLL -->
+<section class="schedule" id="enroll">
+  <div class="schedule-intro">
+    <p class="section-label">Enroll</p>
+    <h2>Ready to make something?</h2>
+    <p>Ages 10+. Maximum 3 students per session. Full days, 9 to 3, bring your own lunch. $100 per day, materials included.</p>
+  </div>
+  <ol class="sessions">
+      <li class="session">
+        <div class="session-when">
+          <p class="session-date">Dec 28–31</p>
+          <p class="session-length">Mon–Thu · 4 days</p>
+        </div>
+        <div class="session-body">
+          <span class="session-tag">Water</span>
+          <h3>Copper: forming and jewelry</h3>
+          <p>Shape copper by hand and finish a few small pieces of jewelry. Soldering if time allows.</p>
+          <p class="session-price">$400 for 4 days</p>
+        </div>
+        <div class="session-action" data-seats="3">
+          <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Copper%2C%20Dec%2028-31&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
+          <a class="btn-ghost waitlist" href="mailto:cho.mira@gmail.com?subject=Waitlist%3A%20Copper%2C%20Dec%2028-31&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Join waitlist</a>
+        </div>
+      </li>
+      <li class="session">
+        <div class="session-when">
+          <p class="session-date">Feb 15</p>
+          <p class="session-length">Presidents' Day · 1 day</p>
+        </div>
+        <div class="session-body">
+          <span class="session-tag">Wood · Intro</span>
+          <h3>Intro to wood</h3>
+          <p>Learn the basic tools and make one small piece to take home. Start here, then join Wood week.</p>
+          <p class="session-price">$100</p>
+        </div>
+        <div class="session-action" data-seats="3">
+          <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Intro%20to%20wood%2C%20Feb%2015&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
+          <a class="btn-ghost waitlist" href="mailto:cho.mira@gmail.com?subject=Waitlist%3A%20Intro%20to%20wood%2C%20Feb%2015&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Join waitlist</a>
+        </div>
+      </li>
+      <li class="session">
+        <div class="session-when">
+          <p class="session-date">Mar 29–Apr 2</p>
+          <p class="session-length">Mon–Fri · 5 days</p>
+        </div>
+        <div class="session-body">
+          <span class="session-tag">Wood</span>
+          <h3>Wood week</h3>
+          <p>Tool skills first, then one real build to take home.</p>
+          <p class="session-price">$500 for 5 days</p>
+        </div>
+        <div class="session-action" data-seats="3">
+          <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Wood%20week%2C%20Mar%2029-Apr%202&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
+          <a class="btn-ghost waitlist" href="mailto:cho.mira@gmail.com?subject=Waitlist%3A%20Wood%20week%2C%20Mar%2029-Apr%202&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Join waitlist</a>
+        </div>
+      </li>
+      <li class="session">
+        <div class="session-when">
+          <p class="session-date">June</p>
+          <p class="session-length">Dates to be announced · 5 days</p>
+        </div>
+        <div class="session-body">
+          <span class="session-tag">Fire</span>
+          <h3>Fire week</h3>
+          <p>Metalworking with fire, plus jewelry.</p>
+          <p class="session-price">$500 for 5 days</p>
+        </div>
+        <div class="session-action" data-seats="3">
+          <a class="btn-primary reserve" href="mailto:cho.mira@gmail.com?subject=Reserve%20a%20seat%3A%20Fire%20week%2C%20June&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Reserve a seat</a>
+          <a class="btn-ghost waitlist" href="mailto:cho.mira@gmail.com?subject=Waitlist%3A%20Fire%20week%2C%20June&body=Student%20name%20and%20age%3A%0D%0AParent%20name%20and%20phone%3A%0D%0A">Join waitlist</a>
+        </div>
+      </li>
+  </ol>
 </section>
 
 <!-- FOOTER -->
@@ -812,8 +1025,6 @@ footer {
   </div>
 
   <div class="footer-right">
-    <a href="mailto:info@elementworkshop.com">info@elementworkshop.com</a><br>
-    <a href="tel:5551234567">(555) 123-4567</a><br><br>
     © 2025 Element Workshop
   </div>
 </footer>
